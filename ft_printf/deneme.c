@@ -19,7 +19,8 @@
 
 int ft_putchar(char c)
 {
-    return write(1, &c, 1);
+    write(1, &c, 1);
+	return (1);
 }
 
 int ft_putstr(char *str)
@@ -52,34 +53,13 @@ int ft_putnbr(int n)
     count += ft_putchar(n % 10 + '0');
     return count;
 }
-int ft_printf(const char *a, ...)
+int ft_checker(char a,va_list args, int *d)
 {
-	int d;
-	int b;
-
-	b = 0;
-	d = 0;
-	va_list args;
-	va_start(args,a);
-	while(a[b])
-	{
-		if(a[b] == '%')
-			ft_checker(a[++b],args,&d);
-		else
-		*d += ft_puchar(a[b++]);
-	}
-	
-	ft_checker(&a,args);
-	va_end(args);
-	return (d);
-}
-static int ft_checker(char a, va_list b, int *d)
-{
-	if (a[++d] == '%')
+	if (a == '%')
 		*d += ft_putchar('%');
-	else if (a[++d] == 's')
+	else if (a == 's')
 		*d += ft_putstr(va_arg(args,char *));
-	else if ( a[++d] == 'c')
+	/*else if ( a[++d] == 'c')
 		*d += ft_putchar(va_arg(args,char));
 	else if (a[++d] == 'p')
 		*d += ft_void*;
@@ -89,10 +69,31 @@ static int ft_checker(char a, va_list b, int *d)
 		*d +=ft_putnbr(va_arg(args,int*));
 	else if(a[++d] == 'u')
 		*d += ft_putnbr(var_arg(args,int*));
-	else if(a[++d] == 'x')
-		*d += ft_hexdecimal(va_arg(args,int*));
-	else if ( a[++d] == 'X')
-		*d += ft_hexadecimalbüyük;
+	//else if(a[++d] == 'x')
+		//*d += ft_hexdecimal(va_arg(args,int*));
+	//else if ( a[++d] == 'X')
+		//*d += ft_hexadecimalbüyük;*/
+}
+int ft_printf(const char *a, ...)
+{
+	int *d;
+	int b;
+
+	if(a)
+		return(0);
+	b = 0;
+	d = 0;
+	va_list args;
+	va_start(args,a);
+	while(a[b])
+	{
+		if(a[b] == '%')
+			ft_checker(a[++b],args,d);
+		else
+		*d += ft_putchar(a[b++]);
+	}
+	va_end(args);
+	return (*d);
 }
 
 int main() {
