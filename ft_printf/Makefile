@@ -1,6 +1,6 @@
 NAME = ft_printf.a
 
-CC = GCC
+CC = CC
 
 FLAGS = -Wall -Wextra -Werror
 
