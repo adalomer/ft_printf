@@ -1,25 +1,38 @@
-NAME = ft_printf.a
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: omadali <adalomer60@gmail.com>             +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/10/27 18:06:11 by omadali           #+#    #+#              #
+#    Updated: 2024/10/27 18:18:27 by omadali          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-CC = CC
+NAME = libftprintf.a
 
 FLAGS = -Wall -Wextra -Werror
 
-SOURCES = ft_printf \
-			ft_hexdecimal \
+SRCS =	ft_printf.c \
+		ft_hexadecimal.c \
+		ft_putchar.c \
+		ft_putnbr.c \
+		ft_putstr.c \
 
-OBJS = $(SOURCES: .c=.o)
+OBJS = $(SRCS:.c=.o)
+
+CC = cc
+
+all:$(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) -c $(FLAGS) $(SRCS)
 	ar rcs $(NAME) $(OBJS)
 
-%.o : %.c
-	$(CC) $(FLAGS) -C $< -O $@
-all : $(NAME)
-
 clean:
 	rm -f $(OBJS)
-	
+
 fclean:	clean
 	rm -f $(NAME)
 
