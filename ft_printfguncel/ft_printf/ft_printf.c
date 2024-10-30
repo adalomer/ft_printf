@@ -6,7 +6,7 @@
 /*   By: omadali <omadali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 17:26:21 by omadali           #+#    #+#             */
-/*   Updated: 2024/10/29 22:48:43 by omadali          ###   ########.fr       */
+/*   Updated: 2024/10/30 05:32:09 by omadali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,71 @@
 #include <unistd.h>
 #include "libftprintf.h"
 
-static void ft_checker(char a, va_list args, int *d)
+static int ft_checker(char a, va_list args, int *d)
 {
+	int ret;
+
+	ret = 0;
 	if (a == '%')
-		*d += ft_putchar('%');
+		ret = ft_putchar('%');
 	else if (a == 's')
-		*d += ft_putstr(va_arg(args, char *));
+		ret = ft_putstr(va_arg(args, char *));
 	else if (a == 'c')
-		*d += ft_putchar(va_arg(args, int));
+		ret = ft_putchar(va_arg(args, int));
 	else if (a == 'p')
-		*d += ft_adress(va_arg(args, void *));
+		ret = ft_adress(va_arg(args, void *));
 	else if (a == 'd' || a == 'i')
-		*d += ft_putnbr(va_arg(args, int));
+		ret = ft_putnbr(va_arg(args, int));
 	else if (a == 'u')
-		*d += ft_putnbr_unsigned(va_arg(args, unsigned int));
+		ret = ft_putnbr_unsigned(va_arg(args, unsigned int));
 	else if (a == 'x')
-		*d += ft_hexadecimal(va_arg(args, unsigned int), 0);
+		ret = ft_hexadecimal(va_arg(args, unsigned int), 0);
 	else if (a == 'X')
-		*d += ft_hexadecimal(va_arg(args, unsigned int), 1);
+		ret = ft_hexadecimal(va_arg(args, unsigned int), 1);
+	if (ret == -1) 
+		return (-1);
+	*d += ret;
+	return (0);
+}
+
+static int handle_format(const char *a, int *b, va_list args, int *d)
+{
+	(*b)++;
+	int ret = ft_checker(a[*b], args, d);
+	if (ret == -1)
+		return (-1);
+	return (ret);
+}
+
+static int handle_char(const char c, int *d)
+{
+	int ret = ft_putchar(c);
+	if (ret == -1) // Hata kontrolü
+		return (-1);
+	*d += ret;
+	return (0);
 }
 
 int ft_printf(const char *a, ...)
 {
-	int d;
-	int b;
-
-	d = 0;
-	b = 0;
+	int d = 0;
+	int b = 0;
+	int ret;
 	va_list args;
+	
 	va_start(args, a);
 	while (a[b])
 	{
 		if (a[b] == '%')
-			ft_checker(a[++b], args, &d);
+			ret = handle_format(a, &b, args, &d);
 		else
-			d += ft_putchar(a[b]);
+			ret = handle_char(a[b], &d);
+
+		if (ret == -1)
+		{
+			va_end(args);
+			return (-1);
+		}
 		b++;
 	}
 	va_end(args);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omadali <adalomer60@gmail.com>             +#+  +:+       +#+        */
+/*   By: omadali <omadali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 21:59:42 by omadali           #+#    #+#             */
-/*   Updated: 2024/10/27 18:09:19 by omadali          ###   ########.fr       */
+/*   Updated: 2024/10/30 02:46:10 by omadali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 int ft_putchar(int a)
 {
-    write(1,&a,1);
+	if (write(1, &a, 1) == -1)
+		return (-1);
 	return (1);
 }
