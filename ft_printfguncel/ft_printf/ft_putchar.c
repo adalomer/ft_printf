@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omadali <omadali@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omadali <adalomer60@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 21:59:42 by omadali           #+#    #+#             */
-/*   Updated: 2024/10/30 02:46:10 by omadali          ###   ########.fr       */
+/*   Updated: 2024/11/01 23:57:39 by omadali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "libftprintf.h"
+#include <unistd.h>
 
-int ft_putchar(int a)
+int	ft_putchar(int a)
 {
 	if (write(1, &a, 1) == -1)
 		return (-1);

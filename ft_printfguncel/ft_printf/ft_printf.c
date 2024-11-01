@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omadali <omadali@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omadali <adalomer60@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 17:26:21 by omadali           #+#    #+#             */
-/*   Updated: 2024/10/30 05:32:09 by omadali          ###   ########.fr       */
+/*   Updated: 2024/11/01 23:56:34 by omadali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libftprintf.h"
 #include <stdarg.h>
 #include <unistd.h>
-#include "libftprintf.h"
 
-static int ft_checker(char a, va_list args, int *d)
+static int	ft_checker(char a, va_list args, int *d)
 {
-	int ret;
+	int	ret;
 
 	ret = 0;
 	if (a == '%')
@@ -35,37 +35,43 @@ static int ft_checker(char a, va_list args, int *d)
 		ret = ft_hexadecimal(va_arg(args, unsigned int), 0);
 	else if (a == 'X')
 		ret = ft_hexadecimal(va_arg(args, unsigned int), 1);
-	if (ret == -1) 
+	if (ret == -1)
 		return (-1);
 	*d += ret;
 	return (0);
 }
 
-static int handle_format(const char *a, int *b, va_list args, int *d)
+static int	handle_format(const char *a, int *b, va_list args, int *d)
 {
+	int	ret;
+
 	(*b)++;
-	int ret = ft_checker(a[*b], args, d);
+	ret = ft_checker(a[*b], args, d);
 	if (ret == -1)
 		return (-1);
 	return (ret);
 }
 
-static int handle_char(const char c, int *d)
+static int	handle_char(const char c, int *d)
 {
-	int ret = ft_putchar(c);
-	if (ret == -1) // Hata kontrolü
+	int	ret;
+
+	ret = ft_putchar(c);
+	if (ret == -1)
 		return (-1);
 	*d += ret;
 	return (0);
 }
 
-int ft_printf(const char *a, ...)
+int	ft_printf(const char *a, ...)
 {
-	int d = 0;
-	int b = 0;
-	int ret;
-	va_list args;
-	
+	int		d;
+	int		b;
+	int		ret;
+	va_list	args;
+
+	d = 0;
+	b = 0;
 	va_start(args, a);
 	while (a[b])
 	{
@@ -73,7 +79,6 @@ int ft_printf(const char *a, ...)
 			ret = handle_format(a, &b, args, &d);
 		else
 			ret = handle_char(a[b], &d);
-
 		if (ret == -1)
 		{
 			va_end(args);

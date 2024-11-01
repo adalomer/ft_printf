@@ -1,189 +1,648 @@
-#include <stdio.h>
 
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: omadali <omadali@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/05 17:26:21 by omadali           #+#    #+#             */
-/*   Updated: 2024/10/22 08:31:14 by omadali          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include <stdarg.h>
-#include <stdio.h>
-#include <unistd.h>
 #include "libftprintf.h"
-// typedef struct s_list
-// {
-// 	void			*content;
-// 	struct s_list	*next;
-// }   t_list;
 
-// typedef struct s_list
-// {
-// 	char a; //1 + 3 |a| | | |b |b | b|b |
-//     int b; // 4
-//     int c; // 1 + 3
-// }   t_list;
+#include <stdio.h>
+#include <limits.h>
 
-// t_list	*ft_lstnew(void *content)
-// {
-// 	t_list	*new;
+int main(void)
+{
+	int output_OG;
+	int output_FT;
 
-// 	new = malloc(sizeof(t_list));
-// 	if (!new)
-// 		return (0);
-// 	new->content = content;
-// 	new->next = NULL;
-// 	return (new);
-// }
+/////////////////////////////////
+//  	  NO SPECIFIERS		   //
+/////////////////////////////////
+	ft_printf("----------------NO SPECIFIERS---------------\n");
+	output_OG = printf("OG -> Test String \t TEeeEEEeEEsT String\n");
+	output_FT = ft_printf("FT -> Test String \t TEeeEEEeEEsT String\n");
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
 
-int main() {
-    /*int decimal = 42;
-    int octal = 052; // Sekizli (octal) 42
-    int hexadecimal = 0x2A; // Onaltılık (hexadecimal) 42
+	ft_printf("\n");
 
-    printf("Using %%d: %d\n", decimal); // 42
-    printf("Using %%d: %d\n",octal); // 42
-    printf("Using %%d: %d\n",hexadecimal); // 42
-    printf("Using %%i: %i\n", decimal); // 42
-    printf("Using %%i with octal: %i\n", octal); // 42
-    printf("Using %%i with hexadecimal: %i\n", hexadecimal); // 42
-    for (int x = 0;x < 50;x++)
-    printf("%x\n",x);
-    printf("%x\n",720);
-    return 0; */
-    // t_list lst_1 = ft_lstnew("1");
-    // t_list lst_2 = ft_lstnew("2");
-    // t_list lst_3 = ft_lstnew("3");
-    // lst_1->next = lst_2;
-    // lst_2->next = lst_3;
-     char b[] = "anam";
-     char d[] = "anam";
-    // char c[] = "anam";
+	output_OG = printf("OG -> T \t t \n");
+	output_FT = ft_printf("FT -> T \t t \n");
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+/////////////////////////////////
+//				%c			   //
+/////////////////////////////////
+	ft_printf("------------%%c------------\n");
+	char	ltr = 'C';
+	output_OG = printf("OG -> I love %c\n", ltr);
+	output_FT = ft_printf("FT -> I love %c\n", ltr);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	ltr = '\0';
+	output_OG = printf("OG -> %c\n", ltr);
+	output_FT = ft_printf("FT -> %c\n", ltr);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %c\n", '0' + 256);
+	output_FT = ft_printf("FT -> %c\n", '0' + 256);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %c %c %c \n", '1', '2', '3');
+	output_FT = ft_printf("FT -> %c %c %c \n", '1', '2', '3');
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %c %c %c \n", '2', '1', 0);
+	output_FT = ft_printf("FT -> %c %c %c \n", '2', '1', 0);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %c %c %c \n", ' ', ' ', ' ');
+	output_FT = ft_printf("FT -> %c %c %c \n", ' ', ' ', ' ');
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %c %c %c \n", '0', 0, '1');
+	output_FT = ft_printf("FT -> %c %c %c \n", '0', 0, '1');
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
 	
-     printf("%u\n",1231233);
-     ft_printf("%u",1231233);
-    // while(lst_1)
-    // {
-    //     printf("%s", (char*)lst_1.content);
-    //     lst_1 = lst_1->next;
-    // }
+/////////////////////////////////
+//				%s			   //
+/////////////////////////////////
+	ft_printf("------------%%s------------\n");
+	char	*str = "Nuno";
+	output_OG = printf("OG -> Hi I'm %s\n", str);
+	output_FT = ft_printf("FT -> Hi I'm %s\n", str);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	char	long_str[] = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab";
+	output_OG = printf("OG -> %s\n", long_str);
+	output_FT = ft_printf("FT -> %s\n", long_str);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	char str2[] = "Atirei o pau no gatis, per gatis num morreus.";
+	output_OG = printf("OG -> %s\n", str2);
+	output_FT = ft_printf("FT -> %s\n", str2);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %s\n", "");
+	output_FT = ft_printf("FT -> %s\n", "");
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %s\n", "-");
+	output_FT = ft_printf("FT -> %s\n", "-");
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %s %s\n", "-", "4");
+	output_FT = ft_printf("FT -> %s %s\n", "-", "4");
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %s %s%s\n", "-", "4", "2");
+	output_FT = ft_printf("FT -> %s %s%s\n", "-", "4", "2");
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	char	*dummy = NULL;
+	output_OG = printf("OG -> This should be NULL: %s\n", dummy);
+	output_FT = ft_printf("FT -> This should be NULL: %s\n", dummy);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+/////////////////////////////////
+//				%p			   //
+/////////////////////////////////
+	ft_printf("------------%%p------------\n");
+	char	*ptr = "c";
+	output_OG = printf("OG -> %p\n", ptr);
+	output_FT = ft_printf("FT -> %p\n", ptr);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+	
+	void *dummy_ptr = NULL;
+	output_OG = printf("OG -> %p\n", dummy_ptr);
+	output_FT = ft_printf("FT -> %p\n", dummy_ptr);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %p\n", (void *)-2);
+	output_FT = ft_printf("FT -> %p\n", (void *)-2);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+	
+	output_OG = printf("OG -> %p\n", (void *)-1);
+	output_FT = ft_printf("FT -> %p\n", (void *)-1);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+	
+	output_OG = printf("OG -> %p\n", (void *)1);
+	output_FT = ft_printf("FT -> %p\n", (void *)1);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %p\n", (void *)15);
+	output_FT = ft_printf("FT -> %p\n", (void *)15);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %p\n", (void *)16);
+	output_FT = ft_printf("FT -> %p\n", (void *)16);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %p\n", (void *)17);
+	output_FT = ft_printf("FT -> %p\n", (void *)17);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	ft_printf("LONG_MIN && LONG_MAX------------------------\n");
+
+	output_OG = printf("OG ->  %p %p \n", (void*)LONG_MIN, (void*)LONG_MAX);
+	output_FT = ft_printf("FT ->  %p %p \n", (void*)LONG_MIN, (void*)LONG_MAX);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	ft_printf("INT_MIN && INT_MAX------------------\n");
+	output_OG = printf("OG ->  %p %p \n", (void*)INT_MIN, (void*)INT_MAX);
+	output_FT = ft_printf("FT ->  %p %p \n", (void*)INT_MIN, (void*)INT_MAX);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	ft_printf("ULONG_MAX && -ULONG_MAX------\n");
+	output_OG = printf("OG ->  %p %p \n", (void*)ULONG_MAX, (void*)-ULONG_MAX);
+	output_FT = ft_printf("FT ->  %p %p \n", (void*)ULONG_MAX, (void*)-ULONG_MAX);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	ft_printf("0 && 0--------------------\n");
+	output_OG = printf("OG ->  %p %p \n", (void*)0, (void*)0);
+	output_FT = ft_printf("FT ->  %p %p \n", (void*)0, (void*)0);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+/////////////////////////////////
+//				%d			   //
+/////////////////////////////////
+	ft_printf("------------%%d------------\n");
+	ft_printf("POSITIVE NUMBERS----------\n");
+	int		nbr_pos = 42;
+	output_OG = printf("OG -> %d\n", nbr_pos);
+	output_FT = ft_printf("FT -> %d\n", nbr_pos);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+	
+	ft_printf("INT_MAX-------------------\n");
+	output_OG = printf("OG -> %d\n", INT_MAX);
+	output_FT = ft_printf("FT -> %d\n", INT_MAX);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	ft_printf("NEGATIVE NUMBERS----------\n");
+	int		nbr_neg = -42;
+	output_OG = printf("OG -> %d\n", nbr_neg);
+	output_FT = ft_printf("FT -> %d\n", nbr_neg);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	nbr_neg = -1000000;
+	output_OG = printf("OG -> %d\n", nbr_neg);
+	output_FT = ft_printf("FT -> %d\n", nbr_neg);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> very long negative number: %d\n", -50000454);
+	output_FT = ft_printf("FT -> very long negative number: %d\n", -50000454);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+	
+	ft_printf("INT_MIN--------------------\n");
+	output_OG = printf("OG -> %d\n", INT_MIN);
+	output_FT = ft_printf("FT -> %d\n", INT_MIN);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+/////////////////////////////////
+//				%i			   //
+/////////////////////////////////
+	ft_printf("------------%%i------------\n");
+	int		nbr_i = 42;
+	output_OG = printf("OG -> %i\n", nbr_i);
+	output_FT = ft_printf("FT -> %i\n", nbr_i);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+/////////////////////////////////
+//				%u			   //
+/////////////////////////////////
+	ft_printf("------------%%u------------\n");
+	unsigned nbr_u = 42;
+	output_OG = printf("OG -> %u\n", nbr_u);
+	output_FT = ft_printf("FT -> %u\n", nbr_u);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %u\n", 4294967295u);
+	output_FT = ft_printf("FT -> %u\n", 4294967295u);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	nbr_u = -16;
+	output_OG = printf("OG -> %u\n", nbr_u);
+	output_FT = ft_printf("FT -> %u\n", nbr_u);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	nbr_u = -101;
+	output_OG = printf("OG -> %u\n", nbr_u);
+	output_FT = ft_printf("FT -> %u\n", nbr_u);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	nbr_u = INT_MAX;
+	output_OG = printf("OG -> %u\n", nbr_u);
+	output_FT = ft_printf("FT -> %u\n", nbr_u);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	nbr_u = INT_MIN;
+	output_OG = printf("OG -> %u\n", nbr_u);
+	output_FT = ft_printf("FT -> %u\n", nbr_u);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	nbr_u = -9;
+	output_OG = printf("OG -> %u\n", nbr_u);
+	output_FT = ft_printf("FT -> %u\n", nbr_u);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	nbr_u = -99;
+	output_OG = printf("OG -> %u\n", nbr_u);
+	output_FT = ft_printf("FT -> %u\n", nbr_u);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	nbr_u = -10;
+	output_OG = printf("OG -> %u\n", nbr_u);
+	output_FT = ft_printf("FT -> %u\n", nbr_u);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+/////////////////////////////////
+//				%x			   //
+/////////////////////////////////
+	ft_printf("------------%%x------------\n");
+	unsigned nbr_x = 520;
+	output_OG = printf("OG -> %x\n", nbr_x);
+	output_FT = ft_printf("FT -> %x\n", nbr_x);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> 17 in hexadecimal = %x\n", 17);
+	output_FT = ft_printf("FT -> 17 in hexadecimal = %x\n", 17);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> 999999 in hexadecimal = %x\n", 999999);
+	output_FT = ft_printf("FT -> 999999 in hexadecimal = %x\n", 999999);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> 4294967293 in hexadecimal = %x\n", 4294967293u);
+	output_FT = ft_printf("FT -> 4294967293 in hexadecimal = %x\n", 4294967293u);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
 
 
+	output_OG = printf("OG -> %d\n", -100);
+	output_FT = ft_printf("FT -> %d\n", -100);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %d\n", -15);
+	output_FT = ft_printf("FT -> %d\n", -15);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+	
+	output_OG = printf("OG -> %x\n", 10);
+	output_FT = ft_printf("FT -> %x\n", 10);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %x\n", 11);
+	output_FT = ft_printf("FT -> %x\n", 11);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %x\n", -42);
+	output_FT = ft_printf("FT -> %x\n", -42);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %x\n", 42);
+	output_FT = ft_printf("FT -> %x\n", 42);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %x\n", 15);
+	output_FT = ft_printf("FT -> %x\n", 15);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %x\n", 1000);
+	output_FT = ft_printf("FT -> %x\n", 1000);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+	
+	output_OG = printf("OG -> %x\n", 0);
+	output_FT = ft_printf("FT -> %x\n", 0);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %x\n", 1);
+	output_FT = ft_printf("FT -> %x\n", 1);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %x\n", 9);
+	output_FT = ft_printf("FT -> %x\n", 9);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+	
+	output_OG = printf("OG -> %x\n", -1);
+	output_FT = ft_printf("FT -> %x\n", -1);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %x\n", -2);
+	output_FT = ft_printf("FT -> %x\n", -2);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+	
+	output_OG = printf("OG -> %x\n", -101);
+	output_FT = ft_printf("FT -> %x\n", -101);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %x\n", INT_MAX);
+	output_FT = ft_printf("FT -> %x\n", INT_MAX);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %x\n", INT_MIN);
+	output_FT = ft_printf("FT -> %x\n", INT_MIN);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %x\n", UINT_MAX);
+	output_FT = ft_printf("FT -> %x\n", UINT_MAX);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %x\n", 100);
+	output_FT = ft_printf("FT -> %x\n", 100);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %x\n", -99);
+	output_FT = ft_printf("FT -> %x\n", -99);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %x\n", -16);
+	output_FT = ft_printf("FT -> %x\n", -16);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %x\n", -9);
+	output_FT = ft_printf("FT -> %x\n", -9);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %x\n", -14);
+	output_FT = ft_printf("FT -> %x\n", -14);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %x\n", 16);
+	output_FT = ft_printf("FT -> %x\n", 16);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %x\n", 99);
+	output_FT = ft_printf("FT -> %x\n", 99);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %x\n", 101);
+	output_FT = ft_printf("FT -> %x\n", 101);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %x\n", -11);
+	output_FT = ft_printf("FT -> %x\n", -11);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %x\n", -10);
+	output_FT = ft_printf("FT -> %x\n", -10);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %x\n", 17);
+	output_FT = ft_printf("FT -> %x\n", 17);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+/////////////////////////////////
+//				%X			   //
+/////////////////////////////////
+	ft_printf("------------%%X------------\n");
+	unsigned nbr_X = 520;
+	output_OG = printf("OG -> %X\n", nbr_X);
+	output_FT = ft_printf("FT -> %X\n", nbr_X);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+/////////////////////////////////
+//		% PERCENTAGE TESTS	   //
+/////////////////////////////////
+	ft_printf("------------%%%%------------\n");
+	output_OG = printf("OG -> %%\n");
+	output_FT = ft_printf("FT -> %%\n");
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+	
+	output_OG = printf("OG -> %% %%\n");
+	output_FT = ft_printf("FT -> %% %%\n");
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %% %% %%\n");
+	output_FT = ft_printf("FT -> %% %% %%\n");
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+
+	output_OG = printf("OG -> %%  %%  %%\n");
+	output_FT = ft_printf("FT -> %%  %%  %%\n");
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("--------------------------------MIX-------------------------------\n");
+	output_OG = printf("OG -> %%%s %%%s %%%d %clbum \t 520 in hexadecimal is %x\n", "string1", "string2", 18, 'a', 520);
+	output_FT = ft_printf("FT -> %%%s %%%s %%%d %clbum \t 520 in hexadecimal is %x\n", "string1", "string2", 18, 'a', 520);
+	printf("OUTPUT OG = %d\n", output_OG);
+	ft_printf("OUTPUT FT = %d\n", output_FT);
+
+	ft_printf("\n");
+	return (0);
 }
-// #include <stdarg.h>
-// #include <unistd.h>
-// #include "libftprintf.h"
-
-// static void ft_checker(char a, va_list args, int *d)
-// {
-// 	if (a == '%')
-// 		*d += ft_putchar('%');
-// 	else if (a == 's')
-// 		*d += ft_putstr(va_arg(args, char *));
-// 	else if (a == 'c')
-// 		*d += ft_putchar(va_arg(args, int));
-// 	else if (a == 'p')
-// 		*d += ft_adress(va_arg(args, void *));
-// 	else if (a == 'd' || a == 'i')
-// 		*d += ft_putnbr(va_arg(args, int));
-// 	else if (a == 'u')
-// 		*d += ft_putnbr_unsigned(va_arg(args, unsigned int));
-// 	else if (a == 'x')
-// 		*d += ft_hexadecimal(va_arg(args, unsigned int), 0);
-// 	else if (a == 'X')
-// 		*d += ft_hexadecimal(va_arg(args, unsigned int), 1);
-// }
-
-// int ft_printf(const char *a, ...)
-// {
-// 	int d = 0;
-// 	int b = 0;
-// 	va_list args;
-// 	va_start(args, a);
-
-// 	while (a[b])
-// 	{
-// 		if (a[b] == '%')
-// 			ft_checker(a[++b], args, &d);
-// 		else
-// 			d += ft_putchar(a[b]);
-// 		b++;
-// 	}
-// 	va_end(args);
-// 	return (d);
-// }
-
-// int ft_hexadecimal(unsigned long int args, int a)
-// {
-// 	char *e;
-// 	int d = 0;
-
-// 	e = (a == 1) ? "0123456789ABCDEF" : "0123456789abcdef";
-// 	if (args >= 16)
-// 		d += ft_hexadecimal(args / 16, a);
-// 	d += ft_putchar(e[args % 16]);
-// 	return (d);
-// }
-
-// int ft_adress(void *a)
-// {
-// 	int d = 0;
-
-// 	if (!a)
-// 		return (ft_putstr("(nil)"));
-// 	d += ft_putchar('0');
-// 	d += ft_putchar('x');
-// 	d += ft_hexadecimal((unsigned long)a, 0);
-// 	return (d);
-// }
-
-// int ft_putchar(int a)
-// {
-// 	write(1, &a, 1);
-// 	return (1);
-// }
-
-// int	ft_putnbr(int n)
-// {
-// 	long int a = n;
-// 	int b = 0;
-
-// 	if (a == 0)
-// 		return (ft_putchar('0'));
-// 	if (a < 0)
-// 	{
-// 		b += ft_putchar('-');
-// 		a = -a;
-// 	}
-// 	if (a > 9)
-// 		b += ft_putnbr(a / 10);
-// 	b += ft_putchar((a % 10) + '0');
-// 	return (b);
-// }
-
-// int ft_putnbr_unsigned(unsigned int n)
-// {
-// 	int b = 0;
-
-// 	if (n > 9)
-// 		b += ft_putnbr_unsigned(n / 10);
-// 	b += ft_putchar((n % 10) + '0');
-// 	return (b);
-// }
-
-// int ft_putstr(char *a)
-// {
-// 	int d = 0;
-// 	int b = 0;
-
-// 	if (!a)
-// 		return (ft_putstr("(null)"));
-// 	while (a[b])
-// 		d += ft_putchar(a[b++]);
-// 	return (d);
-// }

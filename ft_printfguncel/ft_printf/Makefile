@@ -1,3 +1,4 @@
+#
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
@@ -12,7 +13,7 @@
 
 NAME = libftprintf.a
 
-FLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
 SRCS =	ft_printf.c \
 		ft_hexadecimal.c \
@@ -26,10 +27,11 @@ OBJS = $(SRCS:.c=.o)
 
 CC = cc
 
+
+
 all:$(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) -c $(FLAGS) $(SRCS)
 	ar rcs $(NAME) $(OBJS)
 
 clean:

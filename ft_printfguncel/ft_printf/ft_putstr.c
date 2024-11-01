@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omadali <omadali@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omadali <adalomer60@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 20:16:33 by omadali           #+#    #+#             */
-/*   Updated: 2024/10/30 05:30:35 by omadali          ###   ########.fr       */
+/*   Updated: 2024/11/01 23:57:52 by omadali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int ft_putstr(char *a)
+int	ft_putstr(char *a)
 {
-	int d;
-	int ret;
+	int	d;
+	int	ret;
 
 	d = 0;
 	if (a == 0)
