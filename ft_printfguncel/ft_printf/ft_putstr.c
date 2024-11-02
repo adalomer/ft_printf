@@ -6,11 +6,11 @@
 /*   By: omadali <adalomer60@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 20:16:33 by omadali           #+#    #+#             */
-/*   Updated: 2024/11/01 23:57:52 by omadali          ###   ########.fr       */
+/*   Updated: 2024/11/02 02:02:53 by omadali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_putstr(char *a)
 {

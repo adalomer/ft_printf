@@ -6,11 +6,11 @@
 /*   By: omadali <adalomer60@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 23:52:46 by omadali           #+#    #+#             */
-/*   Updated: 2024/11/01 23:58:00 by omadali          ###   ########.fr       */
+/*   Updated: 2024/11/02 08:16:15 by omadali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_hexadecimal(unsigned long int args, int a)
 {

@@ -6,11 +6,11 @@
 /*   By: omadali <adalomer60@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 22:07:18 by omadali           #+#    #+#             */
-/*   Updated: 2024/11/01 23:57:48 by omadali          ###   ########.fr       */
+/*   Updated: 2024/11/02 08:06:04 by omadali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_putnbr(int n)
 {

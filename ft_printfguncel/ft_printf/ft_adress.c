@@ -6,11 +6,11 @@
 /*   By: omadali <adalomer60@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 23:13:23 by omadali           #+#    #+#             */
-/*   Updated: 2024/11/02 00:07:09 by omadali          ###   ########.fr       */
+/*   Updated: 2024/11/02 02:02:24 by omadali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_adress(void *a)
 {

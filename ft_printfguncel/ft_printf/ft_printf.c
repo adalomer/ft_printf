@@ -6,13 +6,11 @@
 /*   By: omadali <adalomer60@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 17:26:21 by omadali           #+#    #+#             */
-/*   Updated: 2024/11/01 23:56:34 by omadali          ###   ########.fr       */
+/*   Updated: 2024/11/02 08:05:11 by omadali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
-#include <stdarg.h>
-#include <unistd.h>
+#include "ft_printf.h"
 
 static int	ft_checker(char a, va_list args, int *d)
 {
