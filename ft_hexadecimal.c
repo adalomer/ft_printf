@@ -6,20 +6,20 @@
 /*   By: omadali <adalomer60@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 23:52:46 by omadali           #+#    #+#             */
-/*   Updated: 2024/11/04 14:18:55 by omadali          ###   ########.fr       */
+/*   Updated: 2024/11/04 18:29:05 by omadali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_hexadecimal(unsigned long int args, char a)
+int	ft_hexadecimal(unsigned long int args, int a)
 {
 	char	*e;
 	int		d;
 
 	d = 0;
 	e = "0123456789abcdef";
-	if (a == 'X')
+	if (a == 1)
 		e = "0123456789ABCDEF";
 	if (args >= 16)
 		d += ft_hexadecimal(args / 16, a);
