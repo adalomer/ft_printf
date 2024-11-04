@@ -19,11 +19,6 @@ int	ft_adress(void *a)
 	unsigned long	f;
 
 	d = 0;
-	if (a == 0)
-	{
-		d += ft_putstr("0x0");
-		return (d);
-	}
 	f = (unsigned long)a;
 	d = 0;
 	d += ft_putchar('0');
