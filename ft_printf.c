@@ -6,7 +6,7 @@
 /*   By: omadali <adalomer60@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 17:26:21 by omadali           #+#    #+#             */
-/*   Updated: 2024/11/02 08:05:11 by omadali          ###   ########.fr       */
+/*   Updated: 2024/11/04 14:23:11 by omadali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ static int	ft_checker(char a, va_list args, int *d)
 		ret = ft_putnbr(va_arg(args, int));
 	else if (a == 'u')
 		ret = ft_putnbr_unsigned(va_arg(args, unsigned int));
-	else if (a == 'x')
-		ret = ft_hexadecimal(va_arg(args, unsigned int), 0);
-	else if (a == 'X')
-		ret = ft_hexadecimal(va_arg(args, unsigned int), 1);
+	else if (a == 'x' || a == 'X')
+		ret = ft_hexadecimal(va_arg(args, unsigned int), a);
+	else
+		ret = ft_putchar('%') + ft_putchar(a);
 	if (ret == -1)
 		return (-1);
 	*d += ret;

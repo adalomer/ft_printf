@@ -1,7 +1,7 @@
 
-#include "libftprintf.h"
+ #include "ft_printf.h"
 
-#include <stdio.h>
+ #include <stdio.h>
 #include <limits.h>
 
 int main(void)
@@ -646,3 +646,10 @@ int main(void)
 	ft_printf("\n");
 	return (0);
 }
+// int main()
+// {
+// 	int b = printf("%y%k%r%%\n");
+// 	int a = ft_printf("%y%k%r%%\n");
+	
+// 	printf("%d, %d\n", a, b);
+// }

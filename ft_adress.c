@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_adress.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omadali <adalomer60@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 20:19:17 by omadali           #+#    #+#             */
-/*   Updated: 2024/11/02 02:17:26 by omadali          ###   ########.fr       */
+/*   Created: 2024/10/28 23:13:23 by omadali           #+#    #+#             */
+/*   Updated: 2024/11/04 14:24:19 by omadali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
+# define NULL (void*)0
 
-# include <stdarg.h>
+int	ft_adress(void *a)
+{
+	int				d;
+	unsigned long	f;
 
-int	ft_putstr(char *a);
-int	ft_printf(const char *a, ...);
-int	ft_putchar(int a);
-int	ft_hexadecimal(unsigned long int args, int a);
-int	ft_putnbr(int n);
-int	ft_putchar(int a);
-int	ft_adress(void *a);
-int	ft_putnbr_unsigned(unsigned int b);
-
-#endif
+	d = 0;
+	if (a == 0)
+	{
+		d += ft_putstr("0x0");
+		return (d);
+	}
+	f = (unsigned long)a;
+	d = 0;
+	d += ft_putchar('0');
+	d += ft_putchar('x');
+	d += ft_hexadecimal(f, 'x');
+	return (d);
+}

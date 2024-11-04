@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_hexadecimal.c                                   :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omadali <adalomer60@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 23:52:46 by omadali           #+#    #+#             */
-/*   Updated: 2024/11/02 08:16:15 by omadali          ###   ########.fr       */
+/*   Created: 2024/10/21 20:19:17 by omadali           #+#    #+#             */
+/*   Updated: 2024/11/04 14:24:07 by omadali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-int	ft_hexadecimal(unsigned long int args, int a)
-{
-	char	*e;
-	int		d;
+# include <stdarg.h>
 
-	d = 0;
-	e = "0123456789abcdef";
-	if (a == 1)
-		e = "0123456789ABCDEF";
-	if (args >= 16)
-		d += ft_hexadecimal(args / 16, a);
-	d += ft_putchar(e[args % 16]);
-	return (d);
-}
+int	ft_putstr(char *a);
+int	ft_printf(const char *a, ...);
+int	ft_putchar(int a);
+int	ft_hexadecimal(unsigned long int args, char a);
+int	ft_putnbr(int n);
+int	ft_adress(void *a);
+int	ft_putnbr_unsigned(unsigned int b);
+
+#endif

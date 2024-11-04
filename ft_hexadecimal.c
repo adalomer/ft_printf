@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_adress.c                                        :+:      :+:    :+:   */
+/*   ft_hexadecimal.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omadali <adalomer60@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/28 23:13:23 by omadali           #+#    #+#             */
-/*   Updated: 2024/11/02 02:02:24 by omadali          ###   ########.fr       */
+/*   Created: 2024/10/21 23:52:46 by omadali           #+#    #+#             */
+/*   Updated: 2024/11/04 14:18:55 by omadali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_adress(void *a)
+int	ft_hexadecimal(unsigned long int args, char a)
 {
-	int				d;
-	unsigned long	f;
+	char	*e;
+	int		d;
 
 	d = 0;
-	if (a == 0)
-	{
-		d += ft_putstr("(nil)");
-		return (d);
-	}
-	f = (unsigned long)a;
-	d = 0;
-	d += ft_putchar('0');
-	d += ft_putchar('x');
-	d += ft_hexadecimal(f, 0);
+	e = "0123456789abcdef";
+	if (a == 'X')
+		e = "0123456789ABCDEF";
+	if (args >= 16)
+		d += ft_hexadecimal(args / 16, a);
+	d += ft_putchar(e[args % 16]);
 	return (d);
 }
