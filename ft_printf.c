@@ -30,7 +30,7 @@ static int	ft_checker(char a, va_list args, int *d)
 	else if (a == 'u')
 		ret = ft_putnbr_unsigned(va_arg(args, unsigned int));
 	else if (a == 'x' || a == 'X')
-		ret = ft_hexadecimal(va_arg(args, unsigned int), a);
+		ret = ft_hexadecimal(va_arg(args, unsigned long int), a);
 	else
 		ret = ft_putchar('%') + ft_putchar(a);
 	if (ret == -1)
